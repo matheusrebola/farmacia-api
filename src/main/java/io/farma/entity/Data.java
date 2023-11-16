@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -48,32 +49,33 @@ public class Data {
 	@Column(name="dt_chegada")
 	private LocalDateTime chegada;
 	
-	@Column(name="tb_posto_cd_posto")
-	private Posto posto;
+	@ManyToOne
+	@JoinColumn(name="tb_posto_cd_posto")
+	private Posto dataPosto;
 	
 	@ManyToOne
-	@Column(name="tb_paciente_cd_paciente")
-	private Paciente paciente;
+	@JoinColumn(name="tb_paciente_cd_paciente")
+	private Paciente dataPaciente;
 	
 	@ManyToOne
-	@Column(name="tb_endereco_cd_endereco")
-	private Endereco endereco;
+	@JoinColumn(name="tb_endereco_cd_endereco")
+	private Endereco dataEndereco;
 	
 	@ManyToOne
-	@Column(name="tb_dosagem_cd_dosagem")
-	private Dosagem dosagem;
+	@JoinColumn(name="tb_dosagem_cd_dosagem")
+	private Dosagem dataDosagem;
 	
 	@ManyToOne
-	@Column(name="tb_duracao_cd_duracao")
-	private Duracao duracao;
+	@JoinColumn(name="tb_duracao_cd_duracao")
+	private Duracao dataDuracao;
 	
 	@ManyToOne
-	@Column(name="tb_medicamento_cd_medicamento")
-	private Medicamento medicamento;
+	@JoinColumn(name="tb_medicamento_cd_medicamento")
+	private Medicamento dataMedicamento;
 	
 	@ManyToOne
-	@Column(name="tb_cartela_cd_cartela")
-	private Cartela cartela;
+	@JoinColumn(name="tb_cartela_cd_cartela")
+	private Cartela dataCartela;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;

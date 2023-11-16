@@ -1,5 +1,6 @@
 package io.farma.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -32,25 +33,21 @@ public class Paciente {
 	@Column(name="nm_sobrenome")
 	private String sobrenome;
 	
+	//verificar a relação um para um
 	@OneToOne
-	@Column(name="tb_paciente_fk_endereco")
 	private Endereco endereco;
 	
-	@OneToMany
-	@Column(name="tb_paciente_fk_posto")
-	private Posto posto;
+	@OneToMany(mappedBy="pacientePosto")
+	private Collection<Posto> posto;
 	
-	@OneToMany
-	@Column(name="tb_paciente_fk_medicamento")
-	private Medicamento medicamento;
+	@OneToMany(mappedBy="medicamentoPaciente")
+	private Collection<Medicamento> medicamento;
 	
-	@OneToMany
-	@Column(name="tb_paciente_fk_dosagem")
-	private Dosagem dosagem;
+	@OneToMany(mappedBy="dosagemPaciente")
+	private Collection<Dosagem> dosagem;
 	
-	@OneToMany
-	@Column(name="tb_paciente_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataPaciente")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;

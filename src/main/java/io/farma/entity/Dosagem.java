@@ -1,11 +1,15 @@
 package io.farma.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -28,23 +32,22 @@ public class Dosagem {
 	private UUID id;
 	
 	@Column(name="en_valor_dosagem")
+	@Enumerated(EnumType.STRING)
 	private ValorDosagem valorDosagem;
 	
-	@OneToOne
-	@Column(name="tb_paciente_cd_paciente")
-	private Paciente paciente;
+	@ManyToOne
+	@JoinColumn(name="tb_paciente_cd_paciente")
+	private Paciente dosagemPaciente;
 	
 	@ManyToOne
-	@Column(name="tb_medicamento_cd_medicamento")
-	private Medicamento medicamento;
+	@JoinColumn(name="tb_medicamento_cd_medicamento")
+	private Medicamento dosagemMedicamento;
 	
 	@OneToOne
-	@Column(name="tb_dosagem_fk_duracao")
 	private Duracao duracao;
 	
-	@OneToMany
-	@Column(name="tb_dosagem_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataDosagem")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;

@@ -1,5 +1,6 @@
 package io.farma.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -45,16 +46,13 @@ public class Endereco {
 	private String complemento;
 	
 	@OneToOne
-	@Column(name="tb_paciente_cd_paciente")
 	private Paciente paciente;
 	
 	@OneToOne
-	@Column(name="tb_posto_cd_posto")
 	private Posto posto;
 	
-	@OneToMany
-	@Column(name="tb_endereco_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataEndereco")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;
