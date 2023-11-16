@@ -1,11 +1,13 @@
 package io.farma.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -30,16 +32,15 @@ public class Cartela {
 	private Integer quantidade;
 	
 	@ManyToOne
-	@Column(name="tb_medicamento_cd_medicamento")
-	private Medicamento medicamento;
+	@JoinColumn(name="tb_medicamento_cd_medicamento")
+	private Medicamento cartelaMedicamento;
 	
 	@ManyToOne
-	@Column(name="tb_duracao_cd_duracao")
-	private Duracao duracao;
+	@JoinColumn(name="tb_duracao_cd_duracao")
+	private Duracao duracaoCartela;
 	
-	@OneToMany
-	@Column(name="tb_cartela_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataCartela")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;

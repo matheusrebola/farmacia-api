@@ -1,11 +1,13 @@
 package io.farma.entity;
 
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -29,21 +31,18 @@ public class Posto {
 	@Column(name="nm_nome")
 	private String nome;
 	
+	@JoinColumn(name="tb_paciente_cd_paciente")
 	@ManyToOne
-	@Column(name="tb_paciente_cd_paciente")
-	private Paciente paciente;
+	private Paciente pacientePosto;
 	
 	@OneToOne
-	@Column(name="tb_paciente_fk_endereco")
 	private Endereco endereco;
 	
-	@OneToMany
-	@Column(name="tb_paciente_fk_paciente")
-	private Medicamento medicamento;
+	@OneToMany(mappedBy="medicamentoPosto")
+	private Collection<Medicamento> medicamento;
 	
-	@OneToMany
-	@Column(name="tb_posto_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataPosto")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;
