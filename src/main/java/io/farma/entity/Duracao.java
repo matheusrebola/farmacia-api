@@ -1,6 +1,7 @@
 package io.farma.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -31,16 +32,13 @@ public class Duracao {
 	private LocalDateTime duracao;
 	
 	@OneToOne
-	@Column(name="tb_dosagem_cd_dosagem")
 	private Dosagem dosagem;
 	
-	@OneToMany
-	@Column(name="tb_duracao_fk_cartela")
-	private Cartela cartela;
+	@OneToMany(mappedBy="duracaoCartela")
+	private Collection<Cartela> cartela;
 	
-	@OneToMany
-	@Column(name="tb_duracao_fk_data")
-	private Data data;
+	@OneToMany(mappedBy="dataDuracao")
+	private Collection<Data> data;
 	
 	@Column(name="vl_ativo")
 	private boolean ativo;
