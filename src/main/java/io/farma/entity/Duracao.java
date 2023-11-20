@@ -34,7 +34,7 @@ public class Duracao {
 	@OneToOne
 	private Dosagem dosagem;
 	
-	@OneToMany(mappedBy="duracaoCartela")
+	@OneToMany(mappedBy="cartelaDuracao")
 	private Collection<Cartela> cartela;
 	
 	@OneToMany(mappedBy="dataDuracao")
