@@ -37,7 +37,7 @@ public class Cartela {
 	
 	@ManyToOne
 	@JoinColumn(name="tb_duracao_cd_duracao")
-	private Duracao duracaoCartela;
+	private Duracao cartelaDuracao;
 	
 	@OneToMany(mappedBy="dataCartela")
 	private Collection<Data> data;

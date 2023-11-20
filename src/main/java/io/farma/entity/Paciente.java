@@ -33,7 +33,6 @@ public class Paciente {
 	@Column(name="nm_sobrenome")
 	private String sobrenome;
 	
-	//verificar a relação um para um
 	@OneToOne
 	private Endereco endereco;
 	
